@@ -211,11 +211,60 @@
     color: var(--text-color);
   }
   
-  main img {
-    max-width: 100%;
-    width: auto;
-    height: auto;
+main img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: relative;
+  display: inline-block;
+}
+
+/* Animated border on image hover */
+main img:hover {
+  position: relative;
+}
+
+main img:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-top-color: #3b63fb; /* Blue border color matching link-color */
+  animation: border-animation 1.5s linear forwards;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+@keyframes border-animation {
+  0% {
+    border-color: transparent;
+    border-top-color: #3b63fb;
   }
+  25% {
+    border-color: transparent;
+    border-top-color: #3b63fb;
+    border-right-color: #3b63fb;
+  }
+  50% {
+    border-color: transparent;
+    border-top-color: #3b63fb;
+    border-right-color: #3b63fb;
+    border-bottom-color: #3b63fb;
+  }
+  75% {
+    border-color: transparent;
+    border-top-color: #3b63fb;
+    border-right-color: #3b63fb;
+    border-bottom-color: #3b63fb;
+    border-left-color: #3b63fb;
+  }
+  100% {
+    border-color: #3b63fb;
+  }
+}
   
   .icon {
     display: inline-block;
