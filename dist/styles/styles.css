@@ -5,3 +5,7 @@ h4 {font-size: 24px; font-family: Meiryo, "メイリオ", sans-serif;}
 h5 {font-size: 18px; font-family: Meiryo, "メイリオ", sans-serif;}
 h6 {font-size: 14px; font-family: Meiryo, "メイリオ", sans-serif;}
 p {font-size: 14px; font-family: Meiryo, "メイリオ", sans-serif;}
+body {
+    background-color: #ffebee;
+  }
+  
