@@ -1,0 +1,36 @@
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #f8f9fa;
+$card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+.info-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: $card-shadow;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .info-card-title {
+    color: $primary-color;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .info-card-description {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

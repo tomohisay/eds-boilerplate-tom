@@ -39,9 +39,9 @@ enum blockRows {
 const template = ({ message }: HelloWorldArgs): TemplateResult => {
   return html`<div class="container">
     <div class="hello-world">
-      <h1>Hello, World!</h1>
-      <p>Welcome to your first EDS Block. ${renderIcon('rocket-lunch')}</p>
-      <p class="message">This message comes from your block: ${message}</p>
+      <h1>こんにちは、世界！</h1>
+      <p>あなたの最初のEDSブロックへようこそ。${renderIcon('rocket-lunch')}</p>
+      <p class="message">このメッセージはあなたのブロックから来ています: ${message}</p>
     </div>
   </div>`;
 };
