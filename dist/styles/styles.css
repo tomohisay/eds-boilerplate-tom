@@ -1,1 +1,3 @@
-p {font-size: 14px; font-family: Meiryo, "メイリオ", sans-serif;}
+@import url('../fonts/fonts.css');
+
+p {font-size: 14px; font-family: roboto, sans-serif;}
