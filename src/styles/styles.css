@@ -212,11 +212,18 @@ a:hover {
   }
   
 main img {
-  max-width: 100%;
+  max-width: 900px; /* 画像の最大幅を900pxに制限 */
   width: auto;
   height: auto;
   position: relative;
   display: inline-block;
+}
+
+/* 小さい画面でのレスポンシブ対応 */
+@media (max-width: 900px) {
+  main img {
+    max-width: 100%;
+  }
 }
 
 /* Border colors based on page hierarchy */
