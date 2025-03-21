@@ -18,10 +18,19 @@
 
 .cards .cards-card-image {
   line-height: 0;
+  overflow: hidden; /* 角丸でトリミングするために必要 */
+  border-radius: 12px; /* 角丸の半径 */
 }
 
 .cards > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: 12px; /* 画像自体にも角丸を適用 */
+  transition: transform 0.3s ease; /* ホバーエフェクト用のトランジション */
+}
+
+/* ホバー時に画像を少し拡大するエフェクト */
+.cards > ul > li:hover img {
+  transform: scale(1.05);
 }
