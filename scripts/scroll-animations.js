@@ -118,13 +118,11 @@
       return;
     }
     
-    // すべての段落を一度非表示にする（CSSの初期状態を強制）
+    // すべての段落にリキッドアニメーション用のクラスを追加
     paragraphs.forEach(paragraph => {
       // リキッドアニメーション用のクラスを追加
       paragraph.classList.add('liquid-animation');
-      // 初期状態を設定
-      paragraph.style.opacity = '0';
-      paragraph.style.transform = 'scale(0.95)';
+      // 初期状態ではマスクで隠す（CSSで定義）
     });
     
     // Intersection Observer APIを使用して要素が画面に表示されたことを検出

@@ -4,16 +4,17 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
 
 /* リキッドアニメーション用のスタイル */
 .liquid-animation {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.8s ease, transform 0.8s ease;
   position: relative;
   overflow: hidden;
   color: blue;
   padding: 0.5em;
   border-radius: 4px;
+  /* 初期状態では要素を表示する */
+  opacity: 1;
+  transform: scale(1);
 }
 
+/* 波紋効果のためのオーバーレイ要素 */
 .liquid-animation::before {
   content: '';
   position: absolute;
@@ -31,10 +32,11 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
   pointer-events: none;
 }
 
+/* 液体の背景効果 */
 .liquid-animation::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -42,78 +44,55 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
   z-index: -1;
   transform-origin: bottom;
   transform: scaleY(0);
-  transition: transform 0s;
 }
 
+/* 要素が画面に表示されたときのマスク（最初は完全に隠す） */
+.liquid-animation {
+  mask-image: linear-gradient(to top, black 0%, black 0%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 0%);
+  transition: all 0.5s ease;
+}
+
+/* アニメーション開始時 */
 .liquid-animation.animate {
-  opacity: 1;
-  transform: scale(1);
-  animation: liquid-wave 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation: liquid-reveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
+/* 光沢効果のアニメーション */
 .liquid-animation.animate::before {
   animation: liquid-shine 1.2s ease-in-out forwards;
 }
 
+/* 液体の背景アニメーション */
 .liquid-animation.animate::after {
   animation: liquid-fill 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-@keyframes liquid-wave {
+/* 要素を徐々に表示するアニメーション */
+@keyframes liquid-reveal {
   0% {
-    clip-path: polygon(
-      0% 100%,
-      100% 100%,
-      100% 100%,
-      0% 100%
-    );
+    mask-image: linear-gradient(to top, black 0%, black 0%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, black 0%);
   }
   25% {
-    clip-path: polygon(
-      0% 100%,
-      100% 100%,
-      100% 85%,
-      75% 80%,
-      50% 85%,
-      25% 80%,
-      0% 85%
-    );
+    mask-image: linear-gradient(to top, black 25%, transparent 25%);
+    -webkit-mask-image: linear-gradient(to top, black 25%, transparent 25%);
   }
   50% {
-    clip-path: polygon(
-      0% 100%,
-      100% 100%,
-      100% 55%,
-      75% 60%,
-      50% 50%,
-      25% 60%,
-      0% 55%
-    );
+    mask-image: linear-gradient(to top, black 50%, transparent 50%);
+    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 50%);
   }
   75% {
-    clip-path: polygon(
-      0% 100%,
-      100% 100%,
-      100% 25%,
-      75% 30%,
-      50% 20%,
-      25% 30%,
-      0% 25%
-    );
+    mask-image: linear-gradient(to top, black 75%, transparent 75%);
+    -webkit-mask-image: linear-gradient(to top, black 75%, transparent 75%);
   }
   100% {
-    clip-path: polygon(
-      0% 100%,
-      100% 100%,
-      100% 0%,
-      75% 0%,
-      50% 0%,
-      25% 0%,
-      0% 0%
-    );
+    mask-image: linear-gradient(to top, black 100%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 100%, transparent 100%);
   }
 }
 
+/* 光沢効果のアニメーション */
 @keyframes liquid-shine {
   0% {
     left: -100%;
@@ -123,6 +102,7 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
   }
 }
 
+/* 液体の背景アニメーション */
 @keyframes liquid-fill {
   0% {
     transform: scaleY(0);
