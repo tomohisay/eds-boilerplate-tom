@@ -31,6 +31,12 @@
     const cards = document.querySelectorAll('.cards > ul > li');
     console.log('Found cards:', cards.length);
     
+    // 現在のURLパスを取得
+    const path = window.location.pathname;
+    const isAboutTopPage = path === '/about/top' || path.endsWith('/about/top/');
+    
+    console.log('Current path:', path, 'Is about/top page:', isAboutTopPage);
+    
     cards.forEach(card => {
       observer.observe(card);
     });
