@@ -22,21 +22,28 @@
   border: 1px solid #dadada;
   background-color: var(--background-color);
   opacity: 0; /* 初期状態は非表示 */
-  animation: fadeIn 0.6s ease forwards; /* フェードインアニメーション */
+  transform: translateY(20px); /* 初期位置は少し下 */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* トランジション設定 */
 }
 
-/* カードごとにアニメーション開始時間を遅らせる */
-.cards > ul > li:nth-child(1) { animation-delay: 0.1s; }
-.cards > ul > li:nth-child(2) { animation-delay: 0.2s; }
-.cards > ul > li:nth-child(3) { animation-delay: 0.3s; }
-.cards > ul > li:nth-child(4) { animation-delay: 0.4s; }
-.cards > ul > li:nth-child(5) { animation-delay: 0.5s; }
-.cards > ul > li:nth-child(6) { animation-delay: 0.6s; }
-.cards > ul > li:nth-child(7) { animation-delay: 0.7s; }
-.cards > ul > li:nth-child(8) { animation-delay: 0.8s; }
-.cards > ul > li:nth-child(9) { animation-delay: 0.9s; }
-.cards > ul > li:nth-child(10) { animation-delay: 1.0s; }
-.cards > ul > li:nth-child(n+11) { animation-delay: 1.1s; } /* 11番目以降は同じ遅延 */
+/* animateクラスが追加されたときのみアニメーション開始 */
+.cards > ul > li.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* カードごとにトランジション開始時間を遅らせる */
+.cards > ul > li:nth-child(1) { transition-delay: 0.1s; }
+.cards > ul > li:nth-child(2) { transition-delay: 0.2s; }
+.cards > ul > li:nth-child(3) { transition-delay: 0.3s; }
+.cards > ul > li:nth-child(4) { transition-delay: 0.4s; }
+.cards > ul > li:nth-child(5) { transition-delay: 0.5s; }
+.cards > ul > li:nth-child(6) { transition-delay: 0.6s; }
+.cards > ul > li:nth-child(7) { transition-delay: 0.7s; }
+.cards > ul > li:nth-child(8) { transition-delay: 0.8s; }
+.cards > ul > li:nth-child(9) { transition-delay: 0.9s; }
+.cards > ul > li:nth-child(10) { transition-delay: 1.0s; }
+.cards > ul > li:nth-child(n+11) { transition-delay: 1.1s; } /* 11番目以降は同じ遅延 */
 
 .cards .cards-card-body {
   margin: 16px;
