@@ -9,9 +9,8 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
   color: blue;
   padding: 0.5em;
   border-radius: 4px;
-  /* 初期状態では要素を表示する */
-  opacity: 1;
-  transform: scale(1);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 波紋効果のためのオーバーレイ要素 */
@@ -36,7 +35,7 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
 .liquid-animation::after {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -46,16 +45,18 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
   transform: scaleY(0);
 }
 
-/* 要素が画面に表示されたときのマスク（最初は完全に隠す） */
+/* 初期状態では要素を隠す */
 .liquid-animation {
-  mask-image: linear-gradient(to top, black 0%, black 0%);
-  -webkit-mask-image: linear-gradient(to top, black 0%, black 0%);
-  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* アニメーション開始時 */
 .liquid-animation.animate {
-  animation: liquid-reveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  opacity: 1;
+  transform: translateY(0);
+  animation: liquid-appear 1.2s ease-out forwards;
 }
 
 /* 光沢効果のアニメーション */
@@ -65,30 +66,22 @@ p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
 
 /* 液体の背景アニメーション */
 .liquid-animation.animate::after {
-  animation: liquid-fill 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: liquid-fill 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-/* 要素を徐々に表示するアニメーション */
-@keyframes liquid-reveal {
+/* 要素を液体のように表示するアニメーション */
+@keyframes liquid-appear {
   0% {
-    mask-image: linear-gradient(to top, black 0%, black 0%);
-    -webkit-mask-image: linear-gradient(to top, black 0%, black 0%);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
   }
-  25% {
-    mask-image: linear-gradient(to top, black 25%, transparent 25%);
-    -webkit-mask-image: linear-gradient(to top, black 25%, transparent 25%);
+  30% {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 70%, 75% 75%, 50% 70%, 25% 75%, 0% 70%);
   }
-  50% {
-    mask-image: linear-gradient(to top, black 50%, transparent 50%);
-    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 50%);
-  }
-  75% {
-    mask-image: linear-gradient(to top, black 75%, transparent 75%);
-    -webkit-mask-image: linear-gradient(to top, black 75%, transparent 75%);
+  60% {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 40%, 75% 45%, 50% 40%, 25% 45%, 0% 40%);
   }
   100% {
-    mask-image: linear-gradient(to top, black 100%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to top, black 100%, transparent 100%);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 75% 0%, 50% 0%, 25% 0%, 0% 0%);
   }
 }
 
