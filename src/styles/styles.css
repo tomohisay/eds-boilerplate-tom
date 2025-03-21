@@ -133,6 +133,18 @@ blockquote {
 p {
   color: blue; /* すべての段落を青色に */
 }
+
+/* /about/top ページの段落のみ赤色に */
+body.about-top p,
+body[data-pathname="/about/top"] p,
+html:has(a[href$="/about/top"]:not([href*="?"]):not([href*="#"])) p {
+  color: red;
+}
+
+/* JavaScript で URL に基づいてボディに適切なクラスを追加するためのスクリプト */
+script#page-specific-styles {
+  display: none;
+}
   
   code,
   pre {

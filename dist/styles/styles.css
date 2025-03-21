@@ -2,6 +2,13 @@
 
 p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
 
+/* /about/top ページの段落のみ赤色に */
+body.about-top p,
+body[data-pathname="/about/top"] p,
+html:has(a[href$="/about/top"]:not([href*="?"]):not([href*="#"])) p {
+  color: red;
+}
+
 main img {
   max-width: 900px; /* 画像の最大幅を900pxに制限 */
   width: auto;
