@@ -1,3 +1,18 @@
 @import url('../fonts/fonts.css');
 
-p {font-size: 14px; font-family: roboto, sans-serif;}
+p {font-size: 14px; font-family: roboto, sans-serif; color: blue;}
+
+main img {
+  max-width: 900px; /* 画像の最大幅を900pxに制限 */
+  width: auto;
+  height: auto;
+  position: relative;
+  display: inline-block;
+}
+
+/* 小さい画面でのレスポンシブ対応 */
+@media (max-width: 900px) {
+  main img {
+    max-width: 100%;
+  }
+}

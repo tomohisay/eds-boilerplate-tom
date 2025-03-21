@@ -120,15 +120,19 @@
   h5 { font-size: var(--heading-font-size-s); }
   h6 { font-size: var(--heading-font-size-xs); }
   
-  p,
-  dl,
-  ol,
-  ul,
-  pre,
-  blockquote {
-    margin-top: 0.8em;
-    margin-bottom: 0.25em;
-  }
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+p {
+  color: blue; /* すべての段落を青色に */
+}
   
   code,
   pre {
