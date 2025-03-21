@@ -34,3 +34,16 @@
 .cards > ul > li:hover img {
   transform: scale(1.05);
 }
+
+/* /about/top ページでは角丸処理なし */
+body.about-top .cards .cards-card-image,
+body[data-pathname="/about/top"] .cards .cards-card-image,
+html:has(a[href$="/about/top"]:not([href*="?"]):not([href*="#"])) .cards .cards-card-image {
+  border-radius: 0;
+}
+
+body.about-top .cards > ul > li img,
+body[data-pathname="/about/top"] .cards > ul > li img,
+html:has(a[href$="/about/top"]:not([href*="?"]):not([href*="#"])) .cards > ul > li img {
+  border-radius: 0;
+}
