@@ -11,6 +11,7 @@
     setTimeout(() => {
       try {
         setupScrollAnimations();
+        setupParagraphAnimations(); // 段落のアニメーションをセットアップ
       } catch (error) {
         console.error('[Scroll Animations] Error during initialization:', error);
       }
@@ -102,6 +103,92 @@
     }
     
     console.log('[Scroll Animations] Setup complete');
+  }
+
+  // 段落のアニメーションをセットアップする関数
+  function setupParagraphAnimations() {
+    // すべての段落要素を取得
+    const paragraphs = document.querySelectorAll('p');
+    console.log('[Scroll Animations] Found paragraphs:', paragraphs.length);
+    
+    if (paragraphs.length === 0) {
+      console.log('[Scroll Animations] No paragraphs found, will retry in 1 second');
+      // 段落が見つからない場合は1秒後に再試行
+      setTimeout(setupParagraphAnimations, 1000);
+      return;
+    }
+    
+    // すべての段落を一度非表示にする（CSSの初期状態を強制）
+    paragraphs.forEach(paragraph => {
+      // リキッドアニメーション用のクラスを追加
+      paragraph.classList.add('liquid-animation');
+      // 初期状態を設定
+      paragraph.style.opacity = '0';
+      paragraph.style.transform = 'scale(0.95)';
+    });
+    
+    // Intersection Observer APIを使用して要素が画面に表示されたことを検出
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // 要素が画面に表示されたら
+        if (entry.isIntersecting) {
+          console.log('[Scroll Animations] Paragraph is now visible:', entry.target);
+          
+          // アニメーションをトリガーするクラスを追加
+          entry.target.classList.add('animate');
+          
+          // 一度アニメーションが開始されたら、その要素の監視を停止
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      // 要素が少しでも表示されたらトリガー
+      threshold: 0.1,
+      // ビューポートの下から100px手前でトリガー（早めに開始）
+      rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // 各段落を監視対象に追加
+    paragraphs.forEach((paragraph, index) => {
+      // インデックスに基づいてトランジションディレイを設定（段落ごとに少しずつ遅延）
+      paragraph.style.transitionDelay = `${0.1 * (index % 5)}s`;
+      
+      // Intersection Observerに追加
+      observer.observe(paragraph);
+    });
+    
+    // ページ読み込み直後に画面内に表示されている段落にもアニメーションを適用
+    setTimeout(() => {
+      paragraphs.forEach(paragraph => {
+        const rect = paragraph.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+          console.log('[Scroll Animations] Paragraph is initially visible:', paragraph);
+          paragraph.classList.add('animate');
+        }
+      });
+    }, 300);
+    
+    // スクロールイベントリスナーを追加（Intersection Observerのバックアップとして）
+    window.addEventListener('scroll', checkVisibleParagraphs);
+    
+    // スクロール時に表示されている段落をチェック
+    function checkVisibleParagraphs() {
+      paragraphs.forEach(paragraph => {
+        if (!paragraph.classList.contains('animate')) {
+          const rect = paragraph.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          
+          if (rect.top <= windowHeight && rect.bottom >= 0) {
+            console.log('[Scroll Animations] Paragraph became visible on scroll:', paragraph);
+            paragraph.classList.add('animate');
+          }
+        }
+      });
+    }
+    
+    console.log('[Scroll Animations] Paragraph setup complete');
   }
 
   // DOMContentLoadedイベントで初期化

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リキッドアニメーションテスト</title>
+  <link rel="stylesheet" href="dist/styles/styles.css">
+  <style>
+    body {
+      display: block;
+      background-color: #333;
+      color: #f8f8f8;
+      font-family: roboto, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: #f8f8f8;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .content {
+      margin-top: 50px;
+    }
+    
+    .scroll-down {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #808080;
+    }
+    
+    p {
+      background-color: rgba(255, 255, 255, 0.05);
+      margin: 1.5em 0;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
+    }
+    
+    .description {
+      text-align: center;
+      color: #f8f8f8;
+      margin: 2em 0;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>リキッドアニメーションテスト</h1>
+  
+  <p>このページは、段落要素にリキッドアニメーション効果を適用するテストです。</p>
+  
+  <div class="description">
+    下にスクロールすると、段落が液体のように波打ちながら表示されます。
+  </div>
+  
+  <div class="scroll-down">↓ スクロールしてください ↓</div>
+  
+  <div class="content">
+    <p>この段落は、画面に表示されるとリキッドのような波紋効果でアニメーションします。</p>
+    
+    <p>各段落は少しずつ遅延して表示されるため、流れるような表示効果が生まれます。</p>
+    
+    <p>このアニメーションは、Intersection Observer APIを使用して、要素が画面に表示されたタイミングで開始されます。</p>
+    
+    <p>clip-pathプロパティを使用して、下から上へと液体が流れるような効果を実現しています。</p>
+    
+    <p>また、linear-gradientを使った光の反射効果も追加して、より液体らしい表現を目指しています。</p>
+  </div>
+  
+  <div class="scroll-down">↓ さらにスクロール ↓</div>
+  
+  <div class="content">
+    <p>このアニメーションは、モダンなWebブラウザで動作します。</p>
+    
+    <p>CSSのclip-pathやアニメーションなどの最新機能を活用しています。</p>
+    
+    <p>スクロールに応じて段落が表示される様子をお楽しみください。</p>
+    
+    <p>各段落は、画面内に入ると自動的にアニメーションが開始されます。</p>
+    
+    <p>これにより、ユーザーの注目を集め、コンテンツの読みやすさを向上させることができます。</p>
+  </div>
+  
+  <script src="scripts/scroll-animations.js"></script>
+</body>
+</html>
